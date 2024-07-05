@@ -1,7 +1,7 @@
 import { ThemedView } from '@/components/ThemedView'
 import { FC } from 'react'
 
-const Home: FC = () => {
+const HomeScreen: FC = () => {
   return (
     <ThemedView>
       <ThemedView>Hello, Home</ThemedView>
@@ -9,4 +9,4 @@ const Home: FC = () => {
   )
 }
 
-export default Home
+export default HomeScreen

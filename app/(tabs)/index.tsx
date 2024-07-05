@@ -1,38 +1,44 @@
-import { Tabs } from 'expo-router'
 import React from 'react'
-
 import { TabBarIcon } from '@/components/navigation/TabBarIcon'
 import { Colors } from '@/constants/Colors'
 import { useColorScheme } from '@/hooks/useColorScheme'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { BottomTabScreenProps } from '@/types/Tab'
+import SettingsScreen from './settings'
+import HomeScreen from './home'
 
-export default function TabLayout() {
+const Tab = createBottomTabNavigator<BottomTabScreenProps>()
+
+export default function ButtonTabLayout() {
   const colorScheme = useColorScheme()
 
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
+      <Tab.Screen
+        name="Home"
         options={{
-          title: 'Home',
+          tabBarLabel: '홈',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
+        component={HomeScreen}
       />
-      <Tabs.Screen
-        name="explore"
+      <Tab.Screen
+        component={SettingsScreen}
+        name="Settings"
         options={{
-          title: 'Explore',
+          tabBarLabel: '설정',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),
         }}
       />
-    </Tabs>
+    </Tab.Navigator>
   )
 }

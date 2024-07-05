@@ -5,17 +5,21 @@ import {
   ThemeProvider,
 } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
-import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import 'react-native-reanimated'
 import { StatusBar } from 'expo-status-bar'
-import { Text } from 'react-native'
 import { ThemedText } from '@/components/ThemedText'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ButtonTabLayout from './(tabs)'
+import NotFoundScreen from './error/NotFoundScreen'
+import { RootStackParamList } from '@/types/RootStack'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -37,13 +41,14 @@ export default function RootLayout() {
     <NavigationContainer independent>
       <StatusBar />
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
+        <Stack.Navigator>
           <Stack.Screen
-            name="(tabs)"
+            name="Home"
+            component={ButtonTabLayout}
             options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
           />
-          <Stack.Screen name="+not-found" />
-        </Stack>
+          <Stack.Screen name="NotFound" component={NotFoundScreen} />
+        </Stack.Navigator>
       </ThemeProvider>
     </NavigationContainer>
   )
