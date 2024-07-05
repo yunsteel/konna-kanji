@@ -1,10 +1,11 @@
+import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { FC } from 'react'
 
 const HomeScreen: FC = () => {
   return (
     <ThemedView>
-      <ThemedView>Hello, Home</ThemedView>
+      <ThemedText>Hello, Home</ThemedText>
     </ThemedView>
   )
 }

@@ -15,8 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ButtonTabLayout from './(tabs)'
 import NotFoundScreen from './error/NotFoundScreen'
 import { RootStackParamList } from '@/types/RootStack'
-import { useSupabaseAuth } from '@/lib/auth/useSupabaseAuth'
-import Auth from '@/lib/auth/Auth'
+import { useSupabaseAuth } from '@/lib/supabase/hooks/useSupabaseAuth'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -44,7 +43,6 @@ export default function RootLayout() {
   return (
     <NavigationContainer independent>
       <StatusBar />
-      <Auth />
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack.Navigator>
           <Stack.Screen
