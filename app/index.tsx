@@ -1,21 +1,22 @@
+import { ThemedText } from '@/components/ThemedText'
+import { useColorScheme } from '@/hooks/useColorScheme'
+import { useSupabaseAuth } from '@/lib/supabase/hooks/useSupabaseAuth'
+import { RootStackParamList } from '@/types/RootStack'
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
   ThemeProvider,
 } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
-import { useEffect } from 'react'
-import { useColorScheme } from '@/hooks/useColorScheme'
-import 'react-native-reanimated'
 import { StatusBar } from 'expo-status-bar'
-import { ThemedText } from '@/components/ThemedText'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useEffect } from 'react'
+import 'react-native-reanimated'
+import GradeScreen from './(stacks)/grade'
 import ButtonTabLayout from './(tabs)'
 import NotFoundScreen from './error/NotFoundScreen'
-import { RootStackParamList } from '@/types/RootStack'
-import { useSupabaseAuth } from '@/lib/supabase/hooks/useSupabaseAuth'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -51,6 +52,7 @@ export default function RootLayout() {
             options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
           />
           <Stack.Screen name="NotFound" component={NotFoundScreen} />
+          <Stack.Screen name="Grade" component={GradeScreen} />
         </Stack.Navigator>
       </ThemeProvider>
     </NavigationContainer>

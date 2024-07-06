@@ -1,5 +1,7 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
+export type Grade = '1' | '2' | '3' | '4' | '5' | '6' | 'S'
+
 export type 상용한자 = {
   구자: string | null
   뜻: string | null
