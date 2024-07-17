@@ -17,11 +17,14 @@ import 'react-native-reanimated'
 import GradeScreen from './(stacks)/grade'
 import ButtonTabLayout from './(tabs)'
 import NotFoundScreen from './error/NotFoundScreen'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -42,19 +45,21 @@ export default function RootLayout() {
   }
 
   return (
-    <NavigationContainer independent>
-      <StatusBar />
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={ButtonTabLayout}
-            options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
-          />
-          <Stack.Screen name="NotFound" component={NotFoundScreen} />
-          <Stack.Screen name="Grade" component={GradeScreen} />
-        </Stack.Navigator>
-      </ThemeProvider>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer independent>
+        <StatusBar />
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={ButtonTabLayout}
+              options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
+            />
+            <Stack.Screen name="NotFound" component={NotFoundScreen} />
+            <Stack.Screen name="Grade" component={GradeScreen} />
+          </Stack.Navigator>
+        </ThemeProvider>
+      </NavigationContainer>
+    </QueryClientProvider>
   )
 }
