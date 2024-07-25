@@ -14,15 +14,14 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
-import GradeScreen from './(stacks)/grade'
-import ButtonTabLayout from './(tabs)'
+import TabNavigation from './(tabs)'
 import NotFoundScreen from './error/NotFoundScreen'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const RootStack = createNativeStackNavigator<RootStackParamList>()
 
 const queryClient = new QueryClient()
 
@@ -49,15 +48,14 @@ export default function RootLayout() {
       <NavigationContainer independent>
         <StatusBar />
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack.Navigator>
-            <Stack.Screen
+          <RootStack.Navigator>
+            <RootStack.Screen
               name="Home"
-              component={ButtonTabLayout}
+              component={TabNavigation}
               options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
             />
-            <Stack.Screen name="NotFound" component={NotFoundScreen} />
-            <Stack.Screen name="Grade" component={GradeScreen} />
-          </Stack.Navigator>
+            <RootStack.Screen name="NotFound" component={NotFoundScreen} />
+          </RootStack.Navigator>
         </ThemeProvider>
       </NavigationContainer>
     </QueryClientProvider>

@@ -1,16 +1,16 @@
 import { ThemedView } from '@/components/ThemedView'
 import { Grade } from '@/lib/supabase/type'
-import { useNavigation } from '@react-navigation/native'
+import { GradesScreenNavigationProps } from '@/types/KanjiStack'
 import { FC } from 'react'
 import { Pressable, ScrollView } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
 const GRADE_LIST: Grade[] = ['1', '2', '3', '4', '5', '6', 'S']
 
-const GradeList: FC = () => {
-  const navigation = useNavigation()
-
-  const handleClickGradeItem = (grade: Grade) => navigation.navigate('Grade', { grade })
+const GradeList = ({ navigation }: GradesScreenNavigationProps) => {
+  const handleClickGradeItem = (grade: Grade) => {
+    navigation.navigate('Kanji', { grade })
+  }
 
   return (
     <ScrollView>

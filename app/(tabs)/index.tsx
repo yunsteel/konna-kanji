@@ -4,12 +4,13 @@ import { Colors } from '@/constants/Colors'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabScreenProps } from '@/types/Tab'
-import SettingsScreen from './settings'
-import HomeScreen from './home'
+import HomeScreen from './screens/home'
+import SettingsScreen from './screens/settings'
+import KanjiTabScreen from './screens/kanji'
 
 const Tab = createBottomTabNavigator<BottomTabScreenProps>()
 
-export default function ButtonTabLayout() {
+export default function TabNavigation() {
   const colorScheme = useColorScheme()
 
   return (
@@ -28,6 +29,16 @@ export default function ButtonTabLayout() {
           ),
         }}
         component={HomeScreen}
+      />
+      <Tab.Screen
+        name="Kanji"
+        options={{
+          tabBarLabel: '한자',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'text' : 'text-outline'} color={color} />
+          ),
+        }}
+        component={KanjiTabScreen}
       />
       <Tab.Screen
         component={SettingsScreen}
