@@ -15,7 +15,6 @@ import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 import TabNavigation from './(tabs)'
-import NotFoundScreen from './error/NotFoundScreen'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -25,7 +24,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>()
 
 const queryClient = new QueryClient()
 
-export default function RootLayout() {
+export default function App() {
   const colorScheme = useColorScheme()
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -44,6 +43,7 @@ export default function RootLayout() {
   }
 
   return (
+    // <ErrorBoundary fallback={<GlobalErrorFallback />} onError={() => console.log('Holy shit!')}>
     <QueryClientProvider client={queryClient}>
       <NavigationContainer independent>
         <StatusBar />
@@ -52,12 +52,15 @@ export default function RootLayout() {
             <RootStack.Screen
               name="Home"
               component={TabNavigation}
-              options={{ headerShown: true, header: () => <ThemedText>콘나 칸지</ThemedText> }}
+              options={{
+                headerShown: true,
+                header: () => <ThemedText>콘나 칸지</ThemedText>,
+              }}
             />
-            <RootStack.Screen name="NotFound" component={NotFoundScreen} />
           </RootStack.Navigator>
         </ThemeProvider>
       </NavigationContainer>
     </QueryClientProvider>
+    // </ErrorBoundary>
   )
 }

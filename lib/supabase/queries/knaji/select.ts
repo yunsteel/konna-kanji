@@ -8,10 +8,16 @@ export const getKanjiListByGrade = async (
   grade: (typeof grades)[number],
   { page = 0, size = DEFAULT_SIZE }: PageParams,
 ) => {
-  return supabase
+  const res = await supabase
     .from('상용한자')
     .select('*')
     .eq('학년', grade)
     .order('총획', { ascending: true })
     .range(page * size, (page + 1) * size - 1)
+
+  if (res.error) {
+    throw res.error
+  }
+
+  return res.data
 }

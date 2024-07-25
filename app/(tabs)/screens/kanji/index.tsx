@@ -4,14 +4,14 @@ import { FC } from 'react'
 import GradesScreen from './grades'
 import KanjiScreen from './kanji'
 
-const Stack = createNativeStackNavigator<KanjiStackParamList>()
+const KanjiStack = createNativeStackNavigator<KanjiStackParamList>()
 
 const KanjiTabScreen: FC = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Grades" component={GradesScreen} />
-      <Stack.Screen name="Kanji" component={KanjiScreen} />
-    </Stack.Navigator>
+    <KanjiStack.Navigator>
+      <KanjiStack.Screen name="Grades" component={GradesScreen} />
+      <KanjiStack.Screen name="Kanji" component={KanjiScreen} />
+    </KanjiStack.Navigator>
   )
 }
 
