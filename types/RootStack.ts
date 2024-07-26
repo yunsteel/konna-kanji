@@ -1,8 +1,11 @@
 import { NativeStackScreenProps } from 'react-native-screens/lib/typescript/native-stack/types'
 
 export type RootStackParamList = {
-  Home: undefined
+  TabNavigation: undefined
   NotFound: undefined
 }
 
-export type HomeScreenNavigationProps = NativeStackScreenProps<RootStackParamList, 'Home'>
+export type TabNavigationScreenNavigationProps = NativeStackScreenProps<
+  RootStackParamList,
+  'TabNavigation'
+>

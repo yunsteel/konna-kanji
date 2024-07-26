@@ -1,8 +1,8 @@
 import GradeList from '@/components/kanji/Grades/GradeList'
 import { GradesScreenNavigationProps } from '@/types/KanjiStack'
 
-const GradesScreen = (props: GradesScreenNavigationProps) => {
+const GradeListScreen = (props: GradesScreenNavigationProps) => {
   return <GradeList {...props} />
 }
 
-export default GradesScreen
+export default GradeListScreen

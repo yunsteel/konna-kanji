@@ -50,7 +50,7 @@ export default function App() {
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <RootStack.Navigator>
             <RootStack.Screen
-              name="Home"
+              name="TabNavigation"
               component={TabNavigation}
               options={{
                 headerShown: true,

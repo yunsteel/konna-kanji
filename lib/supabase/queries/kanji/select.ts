@@ -21,3 +21,13 @@ export const getKanjiListByGrade = async (
 
   return res.data
 }
+
+export const getKanjiMetadata = async (grade: Grade, chapter: number) => {
+  const res = await supabase.from('상용한자').select('*').eq('학년', grade)
+
+  if (res.error) {
+    throw res.error
+  }
+
+  return res.data
+}
